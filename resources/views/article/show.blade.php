@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+@include('navbar')
 
 <div class="container">
     <div class="row justify-content-center">
@@ -34,6 +35,7 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>

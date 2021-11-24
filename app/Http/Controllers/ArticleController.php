@@ -15,7 +15,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::with("category")->get();
         return view('article.index',compact('articles'));
     }
 
@@ -37,6 +37,12 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
+//        return $request;
+        $request->validate([
+            "title" => "required",
+            "category" => "required",
+            "description" => "required"
+        ]);
         $article = new Article();
         $article->title = $request->title;
         $article->category_id = $request->category;
