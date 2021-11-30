@@ -8,7 +8,7 @@
                     @csrf
                     <div class="mb-3">
                         <label for="">Upload Photo</label>
-                        <input type="file" class="form-control" name="photo">
+                        <input type="file" class="form-control" accept="image/jpeg" name="photo[]" multiple>
                     </div>
                     <button class="btn btn-primary">Upload</button>
                 </form>

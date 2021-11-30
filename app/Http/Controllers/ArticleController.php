@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use App\Models\Photo;
 use http\Env\Request;
 
 class ArticleController extends Controller
@@ -56,6 +57,20 @@ class ArticleController extends Controller
         $article->category_id = $request->category;
         $article->description = $request->description;
         $article->save();
+
+        foreach ($request->photo as $photo){
+            $ext = $photo->getClientOriginalExtension();
+            $newName = uniqid()."_photo.".$ext;
+            $photo = $photo->storeAs('public/images',$newName);
+
+            $p = new Photo();
+            $p->name = $newName;
+            $p->article_id = $article->id;
+            $p->save();
+
+        }
+
+
         return redirect()->route('article.index');
     }
 
