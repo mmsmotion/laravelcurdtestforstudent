@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArticleRequest;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Models\Article;
+use http\Env\Request;
 
 class ArticleController extends Controller
 {
+
+    public function api(){
+        $arr = Article::all();
+        return response($arr,200);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -38,6 +44,8 @@ class ArticleController extends Controller
     public function store(StoreArticleRequest $request)
     {
 //        return $request;
+
+
         $request->validate([
             "title" => "required",
             "category" => "required",
@@ -70,6 +78,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+
         return view('article.edit',compact('article'));
     }
 
@@ -82,6 +91,11 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
+        $request->validate([
+            "title" => "required",
+            "category" => "required",
+            "description" => "required"
+        ]);
         $article->title = $request->title;
         $article->description = $request->description;
         $article->category_id = $request->category;

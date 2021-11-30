@@ -16,12 +16,22 @@
         <div class="col-12">
             <div class="my-5">
 
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{ route('article.update',$article->id) }}" method="post">
                     @csrf
                     @method('put')
                     <div class="mb-3">
                         <label class="form-label">Article Title</label>
-                        <input type="text" name="title" class="form-control form-control-lg" value="{{ $article->title }}">
+                        <input type="text" name="title" class="form-control form-control-lg" value="{{ old('title',$article->title) }}">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Category</label>

@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ArticleFactory extends Factory
+class PhotoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,9 +14,7 @@ class ArticleFactory extends Factory
     public function definition()
     {
         return [
-            "title"=> $this->faker->realText(200),
-            "category_id"=> Category::all()->random()->id,
-            "description" => $this->faker->realText(500)
+            //
         ];
     }
 }

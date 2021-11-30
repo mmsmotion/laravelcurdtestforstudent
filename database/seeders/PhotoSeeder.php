@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\ArticleFactory;
 use Illuminate\Database\Seeder;
 
-class ArticleSeeder extends Seeder
+class PhotoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +13,6 @@ class ArticleSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(ArticleFactory::class);
+        //
     }
 }
